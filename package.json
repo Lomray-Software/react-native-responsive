@@ -19,6 +19,9 @@
   "directories": {
     "lib": "lib"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "author": "lomray-software",
   "license": "ISC",
   "bugs": {
