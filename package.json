@@ -1,0 +1,46 @@
+{
+  "name": "@lomray/rn-layout-helper",
+  "version": "1.0.0",
+  "description": "React native responsive layout helper",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lomray-Software/rn-layout-helper.git"
+  },
+  "keywords": [
+    "react-native",
+    "layout",
+    "responsive"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "lomray-software",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lomray-Software/rn-layout-helper/issues"
+  },
+  "homepage": "https://github.com/Lomray-Software/rn-layout-helper#readme",
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/react-native": "^0.63.17",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.8.1",
+    "prettier": "^2.1.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.52.2",
+    "react": ">=16.2.0"
+  },
+  "files": [
+    "lib/**/*"
+  ]
+}
