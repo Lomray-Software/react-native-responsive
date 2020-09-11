@@ -1,5 +1,5 @@
 {
-  "name": "@lomray/rn-layout-helper",
+  "name": "@lomray/react-native-layout-helper",
   "version": "1.0.0",
   "description": "React native responsive layout helper",
   "main": "lib/index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lomray-Software/rn-layout-helper.git"
+    "url": "git+https://github.com/Lomray-Software/react-native-layout-helper.git"
   },
   "keywords": [
     "react-native",
@@ -20,14 +20,14 @@
     "lib": "lib"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "author": "lomray-software",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Lomray-Software/rn-layout-helper/issues"
+    "url": "https://github.com/Lomray-Software/react-native-layout-helper/issues"
   },
-  "homepage": "https://github.com/Lomray-Software/rn-layout-helper#readme",
+  "homepage": "https://github.com/Lomray-Software/react-native-layout-helper#readme",
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/react-native": "^0.63.17",
