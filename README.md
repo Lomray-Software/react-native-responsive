@@ -1,6 +1,16 @@
 # React Native Layout Helper
 Library based on https://github.com/marudy/react-native-responsive-screen
 
+![npm](https://img.shields.io/npm/v/@lomray/react-native-layout-helper)
+![GitHub](https://img.shields.io/github/license/Lomray-Software/react-native-layout-helper)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+
 ## Calculator program
 To simplify calculations, it is better to use the [program](https://github.com/danial031193/rn-size-calculator/releases)
 

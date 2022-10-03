@@ -1,2 +1,13 @@
-node_modules
+logs
+*.log
+npm-debug.log*
+.DS_Store
 .idea
+
+.nyc_output
+coverage
+node_modules
+build
+lib
+cache
+.env.*

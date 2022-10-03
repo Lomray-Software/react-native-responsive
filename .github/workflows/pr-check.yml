@@ -1,0 +1,24 @@
+name: Check PR
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check:
+    name: Check PR
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+
+      - name: Install dependencies
+        run: npm i --ignore-scripts
+
+      - name: Check eslint
+        run: npm run lint:check
+
+      - name: Typescript check
+        run: npm run ts:check

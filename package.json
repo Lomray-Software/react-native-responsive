@@ -1,46 +1,68 @@
 {
   "name": "@lomray/react-native-layout-helper",
-  "version": "1.0.2",
-  "description": "React native responsive layout helper",
+  "version": "1.0.0",
+  "description": "React native responsive layout helper.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "scripts": {
-    "build": "tsc"
+  "keywords": [
+    "js",
+    "helpers",
+    "layout",
+    "react",
+    "native"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lomray-Software/react-native-layout-helper.git"
+    "url": "https://github.com/Lomray-Software/react-native-layout-helper.git"
   },
-  "keywords": [
-    "react-native",
-    "layout",
-    "responsive"
-  ],
-  "directories": {
-    "lib": "lib"
-  },
-  "author": "lomray-software",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Lomray-Software/react-native-layout-helper/issues"
   },
-  "homepage": "https://github.com/Lomray-Software/react-native-layout-helper#readme",
+  "homepage": "https://github.com/Lomray-Software/react-native-layout-helper",
+  "author": "Lomray Software",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rollup -c",
+    "release": "npm run build && npm publish",
+    "lint:check": "eslint --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
+    "lint:format": "eslint --fix --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
+    "ts:check": "tsc --project ./tsconfig.json --skipLibCheck --noemit",
+    "prepare": "husky install"
+  },
   "devDependencies": {
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@types/react-native": "^0.63.17",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "eslint": "^7.8.1",
-    "prettier": "^2.1.1",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.0.2"
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@lomray/eslint-config": "^2.0.1",
+    "@lomray/prettier-config": "^1.2.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.21",
+    "@types/react-native": "^0.67.3",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "eslint": "8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "react": "^17.0.2",
+    "rollup": "^2.79.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^3.0.2",
+    "semantic-release": "^19.0.5",
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
-    "react-native": ">=0.52.2",
-    "react": ">=16.2.0"
+    "react": ">=16.8.0",
+    "react-native": ">=0.62.0"
   },
-  "files": [
-    "lib/**/*"
+  "bundledDependencies": [
+    "tslib"
   ]
 }

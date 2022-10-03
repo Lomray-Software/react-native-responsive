@@ -1,7 +1,4 @@
-/**
- * Calculator for helper https://github.com/danial031193/rn-size-calculator/releases
- */
-import { Component } from 'react';
+import type { Component } from 'react';
 import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
 
 /* Platform constants */
@@ -17,8 +14,8 @@ let screenHeight =
     ? Dimensions.get('window').height - StatusBar.currentHeight
     : Dimensions.get('window').height;
 
-let orientationIsPortrait: boolean = screenWidth < screenHeight;
-let orientationIsLandscape: boolean = screenWidth > screenHeight;
+let isOrientationIsPortrait: boolean = screenWidth < screenHeight;
+let isOrientationIsLandscape: boolean = screenWidth > screenHeight;
 
 /* Minimize layout ratio for tablets */
 let dimensionsRatio = 1;
@@ -37,13 +34,13 @@ const widthPercentageToDP = (
   disableRatio = false
 ): number => {
   // Parse string percentage input and convert it to number.
-  const elemWidth: number = parseFloat(widthPercent.toString());
+  const elemWidth: number = Number.parseFloat(widthPercent.toString());
   const size: number = (screenWidth * elemWidth) / 100;
   const result: number = PixelRatio.roundToNearestPixel(size);
 
   if (disableRatio) {
     // Use PixelRatio.roundToNearestPixel method in order to round the layout
-    // size (dp) to the nearest one that correspons to an integer number of pixels.
+    // size (dp) to the nearest one that corresponds to an integer number of pixels.
     return result;
   }
 
@@ -54,7 +51,7 @@ const widthPercentageToDP = (
  * Converts provided height percentage to independent pixel (dp).
  */
 const heightPercentageToDP = (heightPercent: number): number => {
-  const elemHeight: number = parseFloat(heightPercent.toString());
+  const elemHeight: number = Number.parseFloat(heightPercent.toString());
   const size: number = (screenHeight * elemHeight) / 100;
 
   return PixelRatio.roundToNearestPixel(size) * dimensionsRatio;
@@ -64,7 +61,7 @@ const heightPercentageToDP = (heightPercent: number): number => {
  * Converts provided font size percentage to independent pixel (dp).
  */
 const fontSizePercentageToDP = (fontPercent: number): number => {
-  const elemWidth: number = parseFloat(fontPercent.toString());
+  const elemWidth: number = Number.parseFloat(fontPercent.toString());
   const sizeWH: number =
     screenWidth < screenHeight ? screenWidth : screenHeight;
   const size: number = (sizeWH * elemWidth) / 100;
@@ -74,7 +71,7 @@ const fontSizePercentageToDP = (fontPercent: number): number => {
 
 /**
  * Event listener function that detects orientation change (every time it occurs) and triggers
- * screen rerendering. It does that, by changing the state of the screen where the function is
+ * screen re-rendering. It does that, by changing the state of the screen where the function is
  * called. State changing occurs for a new state variable with the name 'orientation' that will
  * always hold the current value of the orientation after the 1st orientation change.
  * Invoke it inside the screen's constructor or in componentDidMount lifecycle method.
@@ -87,8 +84,8 @@ const listenOrientationChange = (
     // Retrieve and save new dimensions
     screenWidth = newDimensions.window.width;
     screenHeight = newDimensions.window.height;
-    orientationIsPortrait = screenWidth < screenHeight;
-    orientationIsLandscape = screenWidth > screenHeight;
+    isOrientationIsPortrait = screenWidth < screenHeight;
+    isOrientationIsLandscape = screenWidth > screenHeight;
 
     // Trigger screen's rerender with a state update of the orientation variable
     that.setState({
@@ -111,14 +108,30 @@ const removeOrientationListener = (): void => {
   Dimensions.removeEventListener('change', () => null);
 };
 
+/**
+ * Creating paddings for all sides
+ */
+const makePadding = (
+  top: number,
+  right?: number,
+  bottom?: number,
+  left?: number
+) => ({
+  paddingTop: top,
+  paddingRight: right ? right : top,
+  paddingBottom: bottom ? bottom : top,
+  paddingLeft: left ? left : right || top,
+});
+
 export {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
   fontSizePercentageToDP as fs,
   listenOrientationChange as lor,
   removeOrientationListener as rol,
-  orientationIsPortrait as orIsP,
-  orientationIsLandscape as orIsL,
+  isOrientationIsPortrait as orIsP,
+  isOrientationIsLandscape as orIsL,
   isAndroid,
   isIOS,
+  makePadding,
 };

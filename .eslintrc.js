@@ -1,15 +1,41 @@
 module.exports = {
   root: true,
-  rules: {
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/camelcase': 'off',
-  },
-  ignorePatterns: ['src/@types'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
   extends: [
-    '@react-native-community',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
+    'prettier',
+    'plugin:prettier/recommended',
+    'plugin:jsx-a11y/recommended',
+    '@lomray/eslint-config'
   ],
-};
+  ignorePatterns: ['/*.*', 'src/@types'],
+  plugins: [],
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+    serviceworker: true,
+  },
+  globals: {
+    NodeJS: true,
+    JSX: true,
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    files: ['*.ts', '*.tsx'],
+    project: ['./tsconfig.json'],
+    tsconfigRootDir: './',
+  },
+  rules: {
+    'unicorn/import-index': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'no-await-in-loop': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto'
+      }
+    ]
+  }
+}
