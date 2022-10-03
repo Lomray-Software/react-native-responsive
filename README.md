@@ -24,17 +24,18 @@ yarn add @lomray/react-native-layout-helper
 ```
 
 ## Helper functions
-| Function name| Types | Description |
-|:----|:-----:|:----------|
-| isIOS | `boolean` | Check if platform is IOS |
-| isAndroid | `boolean` | Check if platform is Android |
-| wp | `(widthPercent: number, disableRatio = false) => number` | Converts provided width percentage to independent pixel (dp). Disable ratio is intended for some cases when the width on tablets should be the full width of the screen |
-| hp | `(heightPercent: number) => number` | Converts provided height percentage to independent pixel (dp). |
-| fs | `(fontPercent: number) => number` | Converts provided font size percentage to independent pixel (dp). Calculates based on the current screen width (including orientation)|
-| orIsP | `boolean` | Check if orientation is portrait |
-| orIsL | `boolean` | Check if orientation is landscape |
-| lor | `(that: Component, callback: (val: Component) => void` | Event listener function that detects orientation change |
-| rol | `() => void` | Wrapper function that removes orientation change listener |
+| Function name | Types | Description                                                                                                                                                             |
+|:--------------|:-----:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| isIOS         | `boolean` | Check if platform is IOS                                                                                                                                                |
+| isAndroid     | `boolean` | Check if platform is Android                                                                                                                                            |
+| wp            | `(widthPercent: number, disableRatio = false) => number` | Converts provided width percentage to independent pixel (dp). Disable ratio is intended for some cases when the width on tablets should be the full width of the screen |
+| hp            | `(heightPercent: number) => number` | Converts provided height percentage to independent pixel (dp).                                                                                                          |
+| fs            | `(fontPercent: number) => number` | Converts provided font size percentage to independent pixel (dp). Calculates based on the current screen width (including orientation)                                  |
+| orIsP         | `boolean` | Check if orientation is portrait                                                                                                                                        |
+| orIsL         | `boolean` | Check if orientation is landscape                                                                                                                                       |
+| lor           | `(that: Component, callback: (val: Component) => void` | Event listener function that detects orientation change                                                                                                                 |
+| rol           | `() => void` | Wrapper function that removes orientation change listener                                                                                                               |
+| makePadding  | `(top: number, right?: number, bottom?: number, left?: number) => ({ paddingTop, paddingRight, paddingBottom, paddingLeft })` | Make paddings                                                                                                                                                           |
 
 ## Basic example
 
