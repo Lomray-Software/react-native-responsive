@@ -20,6 +20,9 @@ jobs:
       - name: Run eslint
         run: npm run lint:check
 
+      - name: Run ts
+        run: npm run ts:check
+
       - name: Build
         run: |
           npm set-script prepare ""
