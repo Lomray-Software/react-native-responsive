@@ -33,8 +33,7 @@ yarn add @lomray/react-native-layout-helper
 | fs            | `(fontPercent: number) => number` | Converts provided font size percentage to independent pixel (dp). Calculates based on the current screen width (including orientation)                                  |
 | orIsP         | `boolean` | Check if orientation is portrait                                                                                                                                        |
 | orIsL         | `boolean` | Check if orientation is landscape                                                                                                                                       |
-| lor           | `(that: Component, callback: (val: Component) => void` | Event listener function that detects orientation change                                                                                                                 |
-| rol           | `() => void` | Wrapper function that removes orientation change listener                                                                                                               |
+| lor           | `(that: Component, callback: (val: Component) => EmitterSubscription` | Event listener function that detects orientation change                                                                                                                 |
 | makePadding  | `(top: number, right?: number, bottom?: number, left?: number) => ({ paddingTop, paddingRight, paddingBottom, paddingLeft })` | Make paddings                                                                                                                                                           |
 
 ## Basic example
