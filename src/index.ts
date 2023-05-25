@@ -1,4 +1,5 @@
 import type { Component } from 'react';
+import type { EmitterSubscription } from 'react-native';
 import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
 
 /* Platform constants */
@@ -29,10 +30,7 @@ if (screenWidth > 1000) {
 /**
  * Converts provided width percentage to independent pixel (dp).
  */
-const widthPercentageToDP = (
-  widthPercent: number,
-  disableRatio = false
-): number => {
+const widthPercentageToDP = (widthPercent: number, disableRatio = false): number => {
   // Parse string percentage input and convert it to number.
   const elemWidth: number = Number.parseFloat(widthPercent.toString());
   const size: number = (screenWidth * elemWidth) / 100;
@@ -62,8 +60,7 @@ const heightPercentageToDP = (heightPercent: number): number => {
  */
 const fontSizePercentageToDP = (fontPercent: number): number => {
   const elemWidth: number = Number.parseFloat(fontPercent.toString());
-  const sizeWH: number =
-    screenWidth < screenHeight ? screenWidth : screenHeight;
+  const sizeWH: number = screenWidth < screenHeight ? screenWidth : screenHeight;
   const size: number = (sizeWH * elemWidth) / 100;
 
   return PixelRatio.roundToNearestPixel(size) * dimensionsRatio;
@@ -78,8 +75,8 @@ const fontSizePercentageToDP = (fontPercent: number): number => {
  */
 const listenOrientationChange = (
   that: Component,
-  callback: (val: Component) => void
-): void => {
+  callback: (val: Component) => void,
+): EmitterSubscription =>
   Dimensions.addEventListener('change', (newDimensions) => {
     // Retrieve and save new dimensions
     screenWidth = newDimensions.window.width;
@@ -96,27 +93,11 @@ const listenOrientationChange = (
       callback(that);
     }
   });
-};
-
-/**
- * Wrapper function that removes orientation change listener and should be invoked in
- * componentWillUnmount lifecycle method of every class component (UI screen) that
- * listenOrientationChange function has been invoked. This should be done in order to
- * avoid adding new listeners every time the same component is re-mounted.
- */
-const removeOrientationListener = (): void => {
-  Dimensions.removeEventListener('change', () => null);
-};
 
 /**
  * Creating paddings for all sides
  */
-const makePadding = (
-  top: number,
-  right?: number,
-  bottom?: number,
-  left?: number
-) => ({
+const makePadding = (top: number, right?: number, bottom?: number, left?: number) => ({
   paddingTop: top,
   paddingRight: right ? right : top,
   paddingBottom: bottom ? bottom : top,
@@ -128,7 +109,6 @@ export {
   heightPercentageToDP as hp,
   fontSizePercentageToDP as fs,
   listenOrientationChange as lor,
-  removeOrientationListener as rol,
   isOrientationIsPortrait as orIsP,
   isOrientationIsLandscape as orIsL,
   isAndroid,

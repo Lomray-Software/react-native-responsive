@@ -33,36 +33,34 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "@lomray/eslint-config": "^2.0.1",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@lomray/eslint-config": "^3.0.0",
     "@lomray/prettier-config": "^1.2.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@types/lodash": "^4.14.182",
-    "@types/react": "^18.0.21",
-    "@types/react-native": "^0.67.3",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@types/lodash": "^4.14.194",
+    "@types/react": "^18.2.7",
+    "@types/react-native": "^0.72.1",
     "@zerollup/ts-transform-paths": "^1.7.18",
-    "eslint": "8.21.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "react": "^17.0.2",
-    "rollup": "^2.79.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "rollup": "2.79.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-ts": "^3.0.2",
-    "semantic-release": "^19.0.5",
-    "ttypescript": "^1.5.13",
+    "rollup-plugin-ts": "^3.2.0",
+    "semantic-release": "^21.0.2",
+    "ttypescript": "^1.5.15",
     "typescript": "^4.7.4"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-native": ">=0.62.0"
-  },
-  "bundledDependencies": [
-    "tslib"
-  ]
+    "react-native": ">=0.62.0",
+    "tslib": "^2.5.2"
+  }
 }

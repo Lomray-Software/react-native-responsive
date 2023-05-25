@@ -7,10 +7,10 @@ on:
 jobs:
   check:
     name: Check PR
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
