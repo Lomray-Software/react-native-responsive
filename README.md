@@ -1,15 +1,14 @@
-# React Native Layout Helper
-Library based on https://github.com/marudy/react-native-responsive-screen
+# React Native Responsive
 
-![npm](https://img.shields.io/npm/v/@lomray/react-native-layout-helper)
-![GitHub](https://img.shields.io/github/license/Lomray-Software/react-native-layout-helper)
+![npm](https://img.shields.io/npm/v/@lomray/react-native-responsive)
+![GitHub](https://img.shields.io/github/license/Lomray-Software/react-native-responsive)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=react-native-layout-helper&metric=coverage)](https://sonarcloud.io/summary/new_code?id=react-native-layout-helper)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=coverage)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
 
 ## Calculator program
 To simplify calculations, it is better to use the [program](https://github.com/danial031193/rn-size-calculator/releases)
@@ -18,9 +17,9 @@ To simplify calculations, it is better to use the [program](https://github.com/d
 
 npm or yarn
 ```sh
-npm install --save @lomray/react-native-layout-helper
+npm install --save @lomray/react-native-responsive
 
-yarn add @lomray/react-native-layout-helper
+yarn add @lomray/react-native-responsive
 ```
 
 ## Helper functions
@@ -43,7 +42,7 @@ The calculations in this example are made for an iPhone X screen 812x375
 ```js
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { fs, hp, wp } from '@lomray/react-native-layout-helper';
+import { fs, hp, wp } from '@lomray/react-native-responsive';
 
 const styles = StyleSheet.create({
   viewBlock: {
@@ -76,7 +75,7 @@ class Example extends Component {
 ```js
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { fs, hp, wp, lor, rol, orIsP } from '@lomray/react-native-layout-helper';
+import { fs, hp, wp, lor, rol, orIsP } from '@lomray/react-native-responsive';
 
 const stylesF = () => StyleSheet.create({
   viewBlock: {

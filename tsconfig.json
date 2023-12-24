@@ -15,11 +15,12 @@
       "es2015",
       "es2017",
       "es2019",
-      "dom",
-      "webworker"
+      "es2021",
+      "dom"
     ],
-    "module": "CommonJS",
+    "module": "ES2022",
     "moduleResolution": "Node",
+    "target": "ESNext",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "declaration": true,
@@ -29,25 +30,14 @@
     "strictNullChecks": true,
     "strict": false,
     "pretty": true,
-    "suppressImplicitAnyIndexErrors": true,
     "useDefineForClassFields": true,
-    "target": "ESNext",
-    "baseUrl": "./src",
-    "paths": {}
+    "jsx": "react",
+    "baseUrl": "./src"
   },
   "exclude": [
     "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "public/lib",
-    "node_modules",
-    "build",
     "lib",
     "commitlint.config.js",
-    "nyc.config.js",
     "rollup.config.js"
   ]
 }

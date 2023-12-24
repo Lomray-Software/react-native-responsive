@@ -1,25 +1,27 @@
 import typescript from 'rollup-plugin-ts';
-import json from '@rollup/plugin-json';
 import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import { folderInput } from 'rollup-plugin-folder-input';
+import copy from 'rollup-plugin-copy';
 
 export default {
   input: [
-    'src/index.ts',
+    'src/**/*.ts*',
   ],
   output: {
     dir: 'lib',
-    format: 'cjs',
+    format: 'es',
     sourcemap: true,
     preserveModules: true,
     preserveModulesRoot: 'src',
     exports: 'auto',
   },
+  external: ['react', 'react-native'],
   plugins: [
+    folderInput(),
     peerDepsExternal({
       includeDependencies: true,
     }),
-    json(),
     typescript({
       tsconfig: resolvedConfig => ({
         ...resolvedConfig,
@@ -34,5 +36,11 @@ export default {
       }),
     }),
     terser(),
+    copy({
+      targets: [
+        { src: 'package.json', dest: 'lib' },
+        { src: 'README.md', dest: 'lib' },
+      ]
+    })
   ],
 };
