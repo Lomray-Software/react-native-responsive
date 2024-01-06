@@ -10,8 +10,15 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=react-native-responsive&metric=coverage)](https://sonarcloud.io/summary/new_code?id=react-native-responsive)
 
-## Calculator program
-To simplify calculations, it is better to use the [program](https://github.com/danial031193/rn-size-calculator/releases)
+## Why is this library useful?
+For the layout to look the same proportions on any device, we can’t just use pixel values for padding and sizes.
+
+The best way is to convert pixels to screen percentages. There is also a built-in ability to set styles for different orientations conveniently.
+
+## How it works?
+We most often know the dimensions of the device on which the design was made (for example, in Figma).
+
+Therefore, relative to the maximum height and width of the device, we can calculate what percentage of the width or height should be occupied by a specific layout element.
 
 ## Installation
 
@@ -22,99 +29,156 @@ npm install --save @lomray/react-native-responsive
 yarn add @lomray/react-native-responsive
 ```
 
-## Helper functions
-| Function name | Types | Description                                                                                                                                                             |
-|:--------------|:-----:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| isIOS         | `boolean` | Check if platform is IOS                                                                                                                                                |
-| isAndroid     | `boolean` | Check if platform is Android                                                                                                                                            |
-| wp            | `(widthPercent: number, disableRatio = false) => number` | Converts provided width percentage to independent pixel (dp). Disable ratio is intended for some cases when the width on tablets should be the full width of the screen |
-| hp            | `(heightPercent: number) => number` | Converts provided height percentage to independent pixel (dp).                                                                                                          |
-| fs            | `(fontPercent: number) => number` | Converts provided font size percentage to independent pixel (dp). Calculates based on the current screen width (including orientation)                                  |
-| orIsP         | `boolean` | Check if orientation is portrait                                                                                                                                        |
-| orIsL         | `boolean` | Check if orientation is landscape                                                                                                                                       |
-| lor           | `(that: Component, callback: (val: Component) => EmitterSubscription` | Event listener function that detects orientation change                                                                                                                 |
-| makePadding  | `(top: number, right?: number, bottom?: number, left?: number) => ({ paddingTop, paddingRight, paddingBottom, paddingLeft })` | Make paddings                                                                                                                                                           |
+## How to use
+Initialize ResponsiveManager with your device parameters by design to get helper functions.
+```typescript
+/**
+ * src/services/responsive-manager.ts
+ */
+import ResponsiveManager from '@lomray/react-native-responsive/responsive-manager';
 
-## Basic example
+const { fs, hp, wp } = new ResponsiveManager({ height: 844, width: 390 });
 
-The calculations in this example are made for an iPhone X screen 812x375
+export { fs, hp, wp };
 
-```js
-import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { fs, hp, wp } from '@lomray/react-native-responsive';
+```
+
+| Helper | Description                                                            |
+|:-------|:-----------------------------------------------------------------------|
+| wp     | Calculates width value from px to independent pixel (screen percent).  |
+| hp     | Calculates height value from px to independent pixel (screen percent). |
+| fs     | Works as 'wp', but for the fonts size.                                 |
+
+
+Each function has the same parameters:
+`(value: number, disableRatio = false) => number`.
+
+By default, DIMENSIONS_RATIO is used to reduce the layout for devices with larger screens.
+
+Therefore, we don't need to do the layout based on breakpoints with these helpers.
+But we still have the option to disable this for specific layout cases.
+
+More details can be found in `src/constants:getDimensionsRatio.`
+
+### 1. Base example (without orientation changing).
+
+#### 1.1. Create styles.
+
+```typescript
+import { StyleSheet } from 'react-native';
+import { wp, hp, fs } from '@services/responsive-manager';
 
 const styles = StyleSheet.create({
-  viewBlock: {
-    paddingVertical: hp(1.478), // 12
-    marginBottom: hp(3.941), // 32
-    width: wp(56.267), // 211
+  section: {
+    paddingHorizontal: wp(24),
+    height: hp(200),
+    margin: hp(5),
+    width: wp(380),
   },
-  text: {
-    fontSize: fs(4.8), // 18
-    lineHeight: fs(5.333), // 20
-  },
-  disableRatioWidth: {
-    width: wp(100, true), // 375
+  title: {
+    fontSize: fs(24),
+    fontWeight: '600',
   },
 });
 
-class Example extends Component {
-  render() {
-    return (
-      <View style={styles.disableRatioWidth}>
-        <View style={styles.viewBlock}>
-          <Text style={styles.text}>Example</Text>
-        </View>
-      </View>
-    );
-  }
-};
+export default styles;
 ```
-## Change orientation example
-```js
-import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { fs, hp, wp, lor, rol, orIsP } from '@lomray/react-native-responsive';
 
-const stylesF = () => StyleSheet.create({
-  viewBlock: {
-    paddingVertical: hp(1.478), // 12
-    marginBottom: hp(3.941), // 32
-    width: wp(56.267), // 211
-    height: orIsP ? hp(3.5) : wp(5.5),
+#### 1.2. Use created styles in the component.
+
+```typescript jsx
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
+import styles from './styles';
+
+interface ISection {
+  title: string;
+}
+
+const Section: FC<ISection> = ({ title }) => (
+  <View style={styles.section}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+
+export default Section;
+
+```
+
+### 2. Advanced example (with orientation changing).
+
+#### 2.1. Use createStyles function for the component styles.
+
+```typescript
+import createStyles from '@lomray/react-native-responsive/create-styles';
+import { wp, hp, fs } from '@services/responsive-manager';
+
+const styles = createStyles({
+  section: {
+    paddingHorizontal: wp(24),
+    height: hp(200),
+    margin: hp(5),
+    justifyContent: 'center',
+    borderWidth: 1,
+    _landscape: {
+      backgroundColor: 'black',
+      borderColor: 'white',
+      width: wp(220),
+    },
+    _portrait: {
+      backgroundColor: 'white',
+      borderColor: 'black',
+    },
   },
-  text: {
-    fontSize: fs(4.8), // 18
-    lineHeight: fs(5.333), // 20
+  title: {
+    fontSize: fs(24),
+    fontWeight: '600',
+    _landscape: {
+      color: 'white',
+    },
+    _portrait: {
+      color: 'black',
+    },
   },
-  disableRatioWidth: {
-    width: wp(100, true), // 375
+  description: {
+    marginTop: hp(8),
+    fontSize: fs(18),
+    fontWeight: '400',
+    _landscape: {
+      color: 'white',
+    },
+    _portrait: {
+      color: 'black',
+    },
   },
 });
 
-let styles = stylesF();
+export default styles;
 
-class Example extends Component {
-  componentDidMount() {
-    lor(this, () => {
-      styles = stylesF();
-    });
-  }
+```
 
-  componentWillUnmount() {
-    rol();
-  }
+#### 2.2. Use created styles in the component using the useResponsive hook.
 
-  render() {
-    return (
-      <View style={styles.disableRatioWidth}>
-        <View style={styles.viewBlock}>
-          <Text style={styles.text}>Example</Text>
-        </View>
-      </View>
-    );
-  }
+```typescript jsx
+import useResponsive from '@lomray/react-native-responsive/use-responsive';
+import React, { FC } from 'react';
+import { Text, View } from 'react-native';
+import stylesCommon from './styles';
+
+interface ISection {
+  title: string;
+}
+
+const Section: FC<ISection> = ({ title }) => {
+  const styles = useResponsive(stylesCommon);
+
+  return (
+    <View style={styles.section}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  );
 };
+
+export default Section;
 
 ```
