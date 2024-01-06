@@ -1,11 +1,11 @@
 __tests__
-../__helpers__
+__helpers__
 __mocks__
 src
 coverage
 *.tgz
-../.github
-../.husky
+.github
+.husky
 .idea
 .gitattributes
 .editorconfig
@@ -14,7 +14,7 @@ coverage
 .lintstagedrc.js
 commitlint.config.js
 rollup.config.js
-.prettierrc.cjs
+.prettierrc.js
 sonar-project.properties
 tsconfig.json
 release.config.js

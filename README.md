@@ -13,7 +13,11 @@
 ## Why is this library useful?
 For the layout to look the same proportions on any device, we can’t just use pixel values for padding and sizes.
 
-The best way is to convert pixels to screen percentages. There is also a built-in ability to set styles for different orientations conveniently.
+The best way is to convert pixels to screen percentages.
+
+Only in this case will each element of the design look in the same proportions, regardless of how wide or elongated the device’s screen is.
+
+There is also a built-in ability to set styles for different orientations conveniently.
 
 ## How it works?
 We most often know the dimensions of the device on which the design was made (for example, in Figma).
@@ -35,11 +39,13 @@ Initialize ResponsiveManager with your device parameters by design to get helper
 /**
  * src/services/responsive-manager.ts
  */
-import ResponsiveManager from '@lomray/react-native-responsive/responsive-manager';
+import { ResponsiveManager } from '@lomray/react-native-responsive';
 
 const { fs, hp, wp } = new ResponsiveManager({ height: 844, width: 390 });
 
-export { fs, hp, wp };
+const createStyles = ResponsiveManager.createStyles;
+
+export { createStyles, fs, hp, wp };
 
 ```
 
@@ -66,7 +72,7 @@ More details can be found in `src/constants:getDimensionsRatio.`
 
 ```typescript
 import { StyleSheet } from 'react-native';
-import { wp, hp, fs } from '@services/responsive-manager';
+import { fs, hp, wp } from '@services/responsive-manager';
 
 const styles = StyleSheet.create({
   section: {
@@ -110,8 +116,7 @@ export default Section;
 #### 2.1. Use createStyles function for the component styles.
 
 ```typescript
-import createStyles from '@lomray/react-native-responsive/create-styles';
-import { wp, hp, fs } from '@services/responsive-manager';
+import { createStyles, fs, hp, wp } from '@services/responsive-manager';
 
 const styles = createStyles({
   section: {
@@ -157,20 +162,20 @@ export default styles;
 
 ```
 
-#### 2.2. Use created styles in the component using the useResponsive hook.
+#### 2.2. Use created styles in the component using the useStyles hook.
 
 ```typescript jsx
-import useResponsive from '@lomray/react-native-responsive/use-responsive';
+import { useStyles } from '@lomray/react-native-responsive';
 import React, { FC } from 'react';
 import { Text, View } from 'react-native';
-import stylesCommon from './styles';
+import stylesheet from './styles';
 
 interface ISection {
   title: string;
 }
 
 const Section: FC<ISection> = ({ title }) => {
-  const styles = useResponsive(stylesCommon);
+  const styles = useStyles(stylesheet);
 
   return (
     <View style={styles.section}>

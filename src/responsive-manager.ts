@@ -1,7 +1,8 @@
-import { PixelRatio } from 'react-native';
+import { PixelRatio, StyleSheet } from 'react-native';
 import { DIMENSIONS_RATIO, SCREEN_HEIGHT, SCREEN_WIDTH } from './constants';
+import type { TNamedStyles, TOrientation } from './types';
 
-interface IDeviceParams {
+interface IResponsiveManagerParams {
   width: number;
   height: number;
 }
@@ -13,9 +14,9 @@ class ResponsiveManager {
   /**
    * Device width and height by design
    */
-  private params: IDeviceParams;
+  private readonly params: IResponsiveManagerParams;
 
-  constructor(params: IDeviceParams) {
+  constructor(params: IResponsiveManagerParams) {
     this.params = params;
   }
 
@@ -77,6 +78,39 @@ class ResponsiveManager {
     const size = (this.getWindowWidth() * elemWidth) / 100;
 
     return this.roundToNearestPixel(size, disableRatio);
+  };
+
+  /**
+   * Creates a StyleSheet style reference from the given object
+   */
+  public static createStyles = <T extends TNamedStyles<T> | TNamedStyles<any>>(
+    styles: T & TNamedStyles<any>,
+    orientation?: TOrientation,
+  ): T => {
+    if (!orientation) {
+      return StyleSheet.create(styles);
+    }
+
+    const newStyles = {} as T & TNamedStyles<any>;
+
+    for (const key in styles) {
+      const allProps = styles[key];
+      const orientationProps = allProps?.[`_${orientation}`] ?? {};
+
+      // @ts-ignore
+      newStyles[key] = { ...allProps, ...orientationProps };
+
+      // remove RN warnings
+      if (newStyles[key]?._portrait) {
+        delete newStyles[key]._portrait;
+      }
+
+      if (newStyles[key]?._landscape) {
+        delete newStyles[key]._landscape;
+      }
+    }
+
+    return StyleSheet.create(newStyles);
   };
 }
 

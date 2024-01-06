@@ -19,6 +19,6 @@ interface IImageStyle extends ImageStyleBase {
   _landscape?: ImageStyleBase;
 }
 
-export type TDeviceOrientation = 'portrait' | 'landscape';
+export type TOrientation = 'portrait' | 'landscape';
 
 export type TNamedStyles<T> = { [P in keyof T]: IViewStyle | ITextStyle | IImageStyle };

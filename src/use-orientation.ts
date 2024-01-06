@@ -1,10 +1,10 @@
 import { useWindowDimensions } from 'react-native';
-import type { TDeviceOrientation } from './types';
+import type { TOrientation } from './types';
 
 /**
  * Device orientation hook
  */
-const useDeviceOrientation = (): TDeviceOrientation => {
+const useOrientation = (): TOrientation => {
   const { width, height } = useWindowDimensions();
 
   if (width >= height) {
@@ -14,4 +14,4 @@ const useDeviceOrientation = (): TDeviceOrientation => {
   return 'portrait';
 };
 
-export default useDeviceOrientation;
+export default useOrientation;
