@@ -64,6 +64,8 @@ But we still have the option to disable this for specific layout cases.
 
 More details can be found in `src/constants:getDimensionsRatio.`
 
+### [Demo project](https://github.com/Lomray-Software/react-native-responsive-example)
+
 ### 1. Base example (without orientation changing).
 
 #### 1.1. Create styles.
