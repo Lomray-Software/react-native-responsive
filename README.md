@@ -43,9 +43,7 @@ import { ResponsiveManager } from '@lomray/react-native-responsive';
 
 const { fs, hp, wp } = new ResponsiveManager({ height: 844, width: 390 });
 
-const createStyles = ResponsiveManager.createStyles;
-
-export { createStyles, fs, hp, wp };
+export { fs, hp, wp };
 
 ```
 
@@ -116,7 +114,8 @@ export default Section;
 #### 2.1. Use createStyles function for the component styles.
 
 ```typescript
-import { createStyles, fs, hp, wp } from '@services/responsive-manager';
+import { createStyles } from '@lomray/react-native-responsive';
+import { fs, hp, wp } from '@services/responsive-manager';
 
 const styles = createStyles({
   section: {

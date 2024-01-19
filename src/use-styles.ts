@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import ResponsiveManager from './responsive-manager';
+import createStyles from './create-styles';
 import type { TNamedStyles } from './types';
 import useOrientation from './use-orientation';
 
@@ -12,7 +12,7 @@ const useStyles = <T extends TNamedStyles<T> | TNamedStyles<any>>(
 ): T | TNamedStyles<T> => {
   const orientation = useOrientation();
 
-  return useMemo(() => ResponsiveManager.createStyles(styles, orientation), [styles, orientation]);
+  return useMemo(() => createStyles(styles, orientation), [styles, orientation]);
 };
 
 export default useStyles;
