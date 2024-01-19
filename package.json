@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lomray-Software/react-native-layout-helper.git"
+    "url": "https://github.com/Lomray-Software/react-native-responsive.git"
   },
   "bugs": {
-    "url": "https://github.com/Lomray-Software/react-native-layout-helper/issues"
+    "url": "https://github.com/Lomray-Software/react-native-responsive/issues"
   },
-  "homepage": "https://github.com/Lomray-Software/react-native-layout-helper",
+  "homepage": "https://github.com/Lomray-Software/react-native-responsive",
   "author": "Lomray Software",
   "license": "Apache-2.0",
   "scripts": {
