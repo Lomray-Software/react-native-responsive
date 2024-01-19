@@ -1,7 +1,6 @@
 import typescript from 'rollup-plugin-ts';
-import json from '@rollup/plugin-json';
-import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import copy from 'rollup-plugin-copy';
 
 export default {
   input: [
@@ -9,17 +8,17 @@ export default {
   ],
   output: {
     dir: 'lib',
-    format: 'cjs',
+    format: 'es',
     sourcemap: true,
     preserveModules: true,
     preserveModulesRoot: 'src',
     exports: 'auto',
   },
+  external: ['react', 'react-native'],
   plugins: [
     peerDepsExternal({
       includeDependencies: true,
     }),
-    json(),
     typescript({
       tsconfig: resolvedConfig => ({
         ...resolvedConfig,
@@ -33,6 +32,11 @@ export default {
         ]
       }),
     }),
-    terser(),
+    copy({
+      targets: [
+        { src: 'package.json', dest: 'lib' },
+        { src: 'README.md', dest: 'lib' },
+      ]
+    })
   ],
 };
