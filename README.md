@@ -188,3 +188,47 @@ const Section: FC<ISection> = ({ title }) => {
 export default Section;
 
 ```
+
+### 3. Additional features.
+
+#### 3.1. Parameters from the component can be passed to the stylesheet.
+```typescript jsx
+/**
+ * index.tsx
+ */
+import { useStyles } from '@lomray/react-native-responsive';
+import React from 'react';
+import { View } from 'react-native';
+import stylesheet from './styles';
+
+const Component = () => {
+  const styles = useStyles(stylesheet, { isWhite: true });
+
+  return <View style={styles.wrapper} />;
+};
+
+
+export default Component;
+
+```
+
+```typescript jsx
+/*
+ * styles.ts
+ */
+import { createStyles } from '@lomray/react-native-responsive';
+import { IParams } from './index';
+
+interface IParams {
+  isWhite: boolean;
+}
+
+const styles = (params: IParams) => createStyles({
+  wrapper: {
+    color: isWhite ? 'white' : 'black',
+  },
+});
+
+export default styles;
+
+```
