@@ -216,14 +216,14 @@ export default Component;
 /*
  * styles.ts
  */
-import { createStyles } from '@lomray/react-native-responsive';
+import { StyleSheet } from 'react-native';
 import { IParams } from './index';
 
 interface IParams {
   isWhite: boolean;
 }
 
-const styles = (params: IParams) => createStyles({
+const styles = (params: IParams) => StyleSheet.create({
   wrapper: {
     color: isWhite ? 'white' : 'black',
   },
