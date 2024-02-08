@@ -5,12 +5,26 @@ import useOrientation from './use-orientation';
 
 /**
  * Custom styles with orientation
- * Make sense to use only if app need in orientation switching
  */
-const useStyles = <T extends TNamedStyles<T> | TNamedStyles<any>>(
-  styles: T | TNamedStyles<T>,
+const useStyles = <
+  T extends TNamedStyles<T> | TNamedStyles<any>,
+  TParams extends object = Record<any, any>,
+>(
+  stylesheet: T | TNamedStyles<T> | ((params: TParams) => T | TNamedStyles<T>),
+  params?: TParams,
 ): T | TNamedStyles<T> => {
   const orientation = useOrientation();
+
+  /**
+   * Normalize stylesheet
+   */
+  const styles = useMemo(() => {
+    if (typeof stylesheet === 'function') {
+      return stylesheet(params ?? ({} as TParams));
+    }
+
+    return stylesheet;
+  }, [stylesheet, params]);
 
   return useMemo(() => createStyles(styles, orientation), [styles, orientation]);
 };

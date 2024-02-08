@@ -5,15 +5,24 @@ import type { TNamedStyles, TOrientation } from './types';
  * Creates a StyleSheet style reference from the given object
  */
 const createStyles = <T extends TNamedStyles<T> | TNamedStyles<any>>(
-  styles: T & TNamedStyles<any>,
+  styles: T | TNamedStyles<T>,
   orientation?: TOrientation,
 ): T => {
+  /**
+   * Return the defaults without orientation
+   */
   if (!orientation) {
     return StyleSheet.create(styles);
   }
 
+  /**
+   * Result object
+   */
   const newStyles = {} as T & TNamedStyles<any>;
 
+  /**
+   * Merge with orientation styles
+   */
   for (const key in styles) {
     const allProps = styles[key];
     const orientationProps = allProps?.[`_${orientation}`] ?? {};
