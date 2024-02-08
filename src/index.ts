@@ -1,7 +1,5 @@
 export * from './constants';
 
-export { default as createStyles } from './create-styles';
-
 export { default as ResponsiveManager } from './responsive-manager';
 
 export * from './types';

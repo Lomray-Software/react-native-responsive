@@ -113,49 +113,41 @@ export default Section;
 
 ### 2. Advanced example (with orientation changing).
 
-#### 2.1. Use createStyles function for the component styles.
+#### 2.1. Use styles as a function to access additional parameters.
 
 ```typescript
-import { createStyles } from '@lomray/react-native-responsive';
+import { TParams } from '@lomray/react-native-responsive';
+import { StyleSheet } from 'react-native';
 import { fs, hp, wp } from '@services/responsive-manager';
 
-const styles = createStyles({
+const styles = ({ orientation }: TParams) => StyleSheet.create({
   section: {
     paddingHorizontal: wp(24),
     height: hp(200),
     margin: hp(5),
     justifyContent: 'center',
     borderWidth: 1,
-    _landscape: {
-      backgroundColor: 'black',
-      borderColor: 'white',
-      width: wp(220),
-    },
-    _portrait: {
-      backgroundColor: 'white',
-      borderColor: 'black',
-    },
+    ...(orientation === 'portrait'
+      ? {
+        backgroundColor: 'white',
+        borderColor: 'black',
+      }
+      : {
+        backgroundColor: 'black',
+        borderColor: 'white',
+        width: wp(220),
+      }),
   },
   title: {
     fontSize: fs(24),
     fontWeight: '600',
-    _landscape: {
-      color: 'white',
-    },
-    _portrait: {
-      color: 'black',
-    },
+    color: orientation === 'portrait' ? 'black' : 'white',
   },
   description: {
     marginTop: hp(8),
     fontSize: fs(18),
     fontWeight: '400',
-    _landscape: {
-      color: 'white',
-    },
-    _portrait: {
-      color: 'black',
-    },
+    color: orientation === 'portrait' ? 'black' : 'white',
   },
 });
 
@@ -192,6 +184,8 @@ export default Section;
 ### 3. Additional features.
 
 #### 3.1. Parameters from the component can be passed to the stylesheet.
+The parameters will always contain "orientation" and also custom props  that you pass by the second argument of the useStyles hook.
+
 ```typescript jsx
 /**
  * index.tsx
@@ -216,14 +210,14 @@ export default Component;
 /*
  * styles.ts
  */
+import { TParams } from '@lomray/react-native-responsive';
 import { StyleSheet } from 'react-native';
-import { IParams } from './index';
 
-interface IParams {
+interface ICustomParams {
   isWhite: boolean;
 }
 
-const styles = (params: IParams) => StyleSheet.create({
+const styles = ({ isWhite }: TParams<ICustomParams>) => StyleSheet.create({
   wrapper: {
     color: isWhite ? 'white' : 'black',
   },
