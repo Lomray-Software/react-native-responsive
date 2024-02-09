@@ -1,18 +1,20 @@
 import { useMemo } from 'react';
-import createStyles from './create-styles';
-import type { TNamedStyles } from './types';
+import type { TNamedStyles, TParams } from './types';
 import useOrientation from './use-orientation';
 
 /**
- * Custom styles with orientation
- * Make sense to use only if app need in orientation switching
+ * Styles with orientation and additional params
  */
-const useStyles = <T extends TNamedStyles<T> | TNamedStyles<any>>(
-  styles: T | TNamedStyles<T>,
+const useStyles = <T extends TNamedStyles<T>, TProps extends object = Record<any, any>>(
+  stylesheet: (props: TParams<TProps>) => T | TNamedStyles<T>,
+  props?: TProps,
 ): T | TNamedStyles<T> => {
   const orientation = useOrientation();
 
-  return useMemo(() => createStyles(styles, orientation), [styles, orientation]);
+  return useMemo(
+    () => stylesheet({ ...((props ?? {}) as TProps), orientation }),
+    [stylesheet, orientation, props],
+  );
 };
 
 export default useStyles;

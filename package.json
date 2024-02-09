@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "React native responsive manager.",
   "type": "module",
+  "main": "index.js",
   "keywords": [
     "js",
     "helpers",
