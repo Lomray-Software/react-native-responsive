@@ -12,7 +12,7 @@ const useStyles = <T extends TNamedStyles<T>, TProps extends object = Record<any
   const orientation = useOrientation();
 
   return useMemo(
-    () => stylesheet({ orientation, ...((props ?? {}) as TProps) }),
+    () => stylesheet({ ...((props ?? {}) as TProps), orientation }),
     [stylesheet, orientation, props],
   );
 };
