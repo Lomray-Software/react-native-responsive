@@ -1,5 +1,36 @@
 # React Native Responsive
 
+Convert dimensions from a reference design into React Native layout sizes, and select styles by orientation. This is not a CSS breakpoint system or a live window-resizing engine.
+
+## Version and limits
+
+The examples target `@lomray/react-native-responsive@2.2.0`. Its declared peers are React `>=16.8.0` and React Native `>=0.62.0`; those ranges are not a tested compatibility matrix.
+
+`wp`, `hp` and `fs` use window dimensions captured when the module loads. They normalize width to the shorter side and height to the longer side. `useOrientation` reacts to window changes, but does not update those captured scaling dimensions. Do not use these helpers when each resize must recalculate pixel sizes.
+
+The default tablet ratio reduces sizes to 0.7 when the initial width exceeds 700, or 0.55 above 1000. Pass `true` as the second argument to bypass that ratio. `fs` scales by width, not by a separate font-scale policy; check accessibility in your app.
+
+## Minimal component
+
+<!-- docs-example: responsive -->
+```tsx
+import React from 'react';
+import { Text, View } from 'react-native';
+import { ResponsiveManager } from '@lomray/react-native-responsive';
+
+const { wp, hp, fs } = new ResponsiveManager({ width: 390, height: 844 });
+
+export default function Card() {
+  return (
+    <View style={{ padding: wp(24), minHeight: hp(100) }}>
+      <Text style={{ fontSize: fs(18) }}>Account</Text>
+    </View>
+  );
+}
+```
+
+There is no subscription to dispose in this static example. For orientation-specific styles, use `useStyles` below inside a React component. The `@services/responsive-manager` imports in the multi-file examples are application aliases, not package exports.
+
 ![npm](https://img.shields.io/npm/v/@lomray/react-native-responsive)
 ![GitHub](https://img.shields.io/github/license/Lomray-Software/react-native-responsive)
 
@@ -13,9 +44,7 @@
 ## Why is this library useful?
 For the layout to look the same proportions on any device, we can’t just use pixel values for padding and sizes.
 
-The best way is to convert pixels to screen percentages.
-
-Only in this case will each element of the design look in the same proportions, regardless of how wide or elongated the device’s screen is.
+These helpers scale reference-design values to the initial window dimensions. Layout proportions still need to be checked on the devices and accessibility settings your app supports.
 
 There is also a built-in ability to set styles for different orientations conveniently.
 
@@ -59,8 +88,7 @@ Each function has the same parameters:
 
 By default, DIMENSIONS_RATIO is used to reduce the layout for devices with larger screens.
 
-Therefore, we don't need to do the layout based on breakpoints with these helpers.
-But we still have the option to disable this for specific layout cases.
+This ratio is a fixed heuristic, not a replacement for app-specific breakpoints. Disable it for a particular value by passing `true` as the second argument.
 
 More details can be found in `src/constants:getDimensionsRatio.`
 
@@ -219,7 +247,7 @@ interface ICustomParams {
 
 const styles = ({ isWhite }: TParams<ICustomParams>) => StyleSheet.create({
   wrapper: {
-    color: isWhite ? 'white' : 'black',
+    backgroundColor: isWhite ? 'white' : 'black',
   },
 });
 

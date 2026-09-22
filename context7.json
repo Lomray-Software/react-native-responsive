@@ -1,0 +1,28 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "react-native-responsive",
+  "description": "Reference-design scaling and orientation-specific styles for React Native.",
+  "branch": "prod",
+  "folders": [],
+  "excludeFolders": [
+    "node_modules",
+    "src",
+    "lib",
+    "example",
+    "__tests__",
+    "__mocks__",
+    "__helpers__",
+    "scripts",
+    ".github"
+  ],
+  "excludeFiles": [
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md"
+  ],
+  "rules": [
+    "Scaling dimensions are captured at module load; useOrientation is reactive but does not recalculate wp/hp/fs dimensions.",
+    "Examples target 2.2.0; declared peer ranges are not a tested compatibility matrix."
+  ]
+}
