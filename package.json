@@ -32,7 +32,8 @@
     "lint:check": "eslint --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
     "lint:format": "eslint --fix --ext \".ts,.tsx\" \"src/**/*.{ts,tsx,*.ts,*tsx}\"",
     "ts:check": "tsc --project tsconfig.json --skipLibCheck --noemit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:build-tooling": "node scripts/check-build-tooling.test.mjs && node scripts/check-build-tooling.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
@@ -62,5 +63,10 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-native": ">=0.62.0"
+  },
+  "overrides": {
+    "rollup-plugin-ts": {
+      "browserslist-generator": "3.0.0"
+    }
   }
 }
